@@ -26,6 +26,7 @@ local res, err =
 )
 
 if not res then
+    ngx.var.app_name = "auth"
     ngx.exit(ngx.HTTP_BAD_GATEWAY)
 end
 
