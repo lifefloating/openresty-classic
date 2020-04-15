@@ -6,7 +6,7 @@ map $app_name $app_addr {
     volatile true;
     default '';
     test    http://$test_host;
-    auth    http://$auth_test;
+    auth    http://$auth_host;
 }
 
 
