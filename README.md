@@ -69,3 +69,4 @@ openresty -s stop
 
 1. openresty 中文官网 https://openresty.org/cn/
 2. ngx_lua API 文档https://github.com/openresty/lua-nginx-module
+3. lua-resty-http插件https://github.com/pintsized/lua-resty-http
