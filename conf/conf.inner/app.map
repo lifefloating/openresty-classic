@@ -6,12 +6,13 @@ map $app_name $app_addr {
     volatile true;
     default '';
     test    http://$test_host
+    auth    http://$auth_test
 }
 
 
 map $app_name $app_auth {
     volatile    true;
-    default     lua/access/access-token.lua;
+    default     lua/access/auth.lua;
 }
 
 # app body_filter file
