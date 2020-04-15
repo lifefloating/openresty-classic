@@ -11,6 +11,7 @@ function _M:flog(file, message, mode)
     end
 
     file:write(message..'\n')
+    file:close()
 end
 
 -- function _M:syslog(facility, message, level)
