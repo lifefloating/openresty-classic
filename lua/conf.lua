@@ -1,3 +1,4 @@
+-- 控制日志是否记录响应
 LOG_RESP = false
 
 LOG_DIR = '/var/log/openresty/'
