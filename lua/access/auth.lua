@@ -1,7 +1,7 @@
 require "conf"
 local http = require "resty.http"
 local cjson = require "cjson"
-local method_verify = require "access.method_verify"
+local method_verify = require "access.modify_verify"
 local httpc = http.new()
 local common = require "utils.common"
 
