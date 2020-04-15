@@ -28,8 +28,8 @@ end
 local msg = string.format(
 '[%s] [%s] %s %s %s %d %ss %s Request[%s]: %s Response[%s]: %s',
 ngx.var.app_name or '-',
-ngx.var.time_local,
 ngx.var.remote_addr,
+ngx.var.time_local,
 ngx.ctx.username or '-',
 ngx.var.request_method,
 ngx.var.status,
