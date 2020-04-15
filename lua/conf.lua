@@ -1,5 +1,7 @@
 LOG_RESP = false
 
+LOG_DIR = '/var/log/openresty/'
+
 HTTP_TIME_OUT = 60000
 
 SLEEP_TIME = 300
