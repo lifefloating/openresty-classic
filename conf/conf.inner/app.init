@@ -1,0 +1,13 @@
+lua_code_cache on;
+
+lua_shared_dict _G 5m;
+
+# import modules
+
+# so目录 /对应本项目的lib目录
+lua_package_cpath '/usr/local/openresty/lualib/?.so;/usr/local/openresty/nginx/lib/?.so;';
+# lua脚本目录 /对应本项目的lua目录
+lua_package_path '/usr/local/openresty/lualib/?.lua;/usr/local/openresty/nginx/lib/?.lua;/usr/local/openresty/nginx/lua/?.lua;';
+
+#init
+init_by_lua_file lua/init.lua;

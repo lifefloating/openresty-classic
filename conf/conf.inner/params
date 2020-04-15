@@ -1,0 +1,3 @@
+#用于设置host等全局变量
+set $master_ip 127.0.0.1;
+set $global_params  test;

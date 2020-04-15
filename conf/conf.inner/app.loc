@@ -1,0 +1,51 @@
+# nginx location配置
+# 以下只是举例 具体按实际情况分配
+
+#home page
+location = / {
+    try_files /index.html =404;
+    root $public_dir;
+}
+
+#静态资源路径匹配
+location /staticres {
+    rewrite /staticres/(.*) /$1 break;
+    root $public_dir;
+    expires 10d;
+    etag on;
+    gzip on;
+    gzip_types *;
+}
+
+#login
+location = /login {
+    try_files /login.html =404;
+    root $public_dir;
+}
+
+#app
+location ~* ^/api/([a-zA-Z0-9_-]+)/(.*) {
+    set $app_name $1;
+    set $app_uri /$2;
+
+    if ($app_addr = '') {
+        content_by_lua_file lua/error_page/503.lua;
+    }
+
+    access_by_lua_file $app_auth;
+    proxy_pass $app_addr$app_uri$is_args$args;
+    body_filter_by_lua_file $app_body_filter;
+    log_by_lua_file $app_log;
+}
+
+#error page
+error_page 502 @app_502;
+error_page 504 @app_504;
+
+location @app_502 {
+    content_by_lua_file lua/error_page/502.lua;
+}
+
+location @app_504 {
+    content_by_lua_file lua/error_page/504.lua;
+}

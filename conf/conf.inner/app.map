@@ -1,0 +1,27 @@
+# app configuration file
+
+# app name
+# volatile表示此变量不可缓存
+map $app_name $app_addr {
+    volatile true;
+    default '';
+    test    http://$test_host
+}
+
+
+map $app_name $app_auth {
+    volatile    true;
+    default     lua/access/access-token.lua;
+}
+
+# app body_filter file
+map $app_name $app_body_filter {
+    volatile    true;
+    default     lua/body_filter/default.lua;
+}
+
+# app log file
+map $app_name $app_log {
+    volatile    true;
+    default     lua/log/logger.lua;
+}

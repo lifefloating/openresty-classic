@@ -1,0 +1,10 @@
+#用于设置各个app的upstream
+#反向代理 设置app.map
+#负载均衡 设置upstream.conf
+
+# Proxy Server
+
+set $test_host     $master_ip:62000;
+# set $xxxx_host     $master_ip:12345;
+
+# Load Balancer
