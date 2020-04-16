@@ -10,7 +10,8 @@ httpc:set_timeout(HTTP_TIME_OUT)
 -- 鉴权流程
 -- login后将sessionid或token 存于localstorage (只能login获取)
 -- 前端请求给token/sessionid放于headers里 Authorization
--- 先请求鉴权api 通过 => 走通过的逻辑 白名单 只读用户 等  未通过 => 请求停止
+-- 先请求鉴权api 通过 => 走通过的逻辑 白名单 只读用户/其他逻辑 等  未通过 => 请求停止
+-- (有需要的话，可以将鉴权api返回的某些数据在nginx处加到headers里 做进一步鉴权)
 
 local res, err =
     httpc:request_uri(
@@ -39,19 +40,13 @@ end
 if res.status == ngx.HTTP_OK then
     local data = cjson.decode(res.body)["DATA"]
 
-    method_verify.method_verify(data["real_user_type"])
+    method_verify.method_verify(data["real_user_name"])
 
     ngx.req.set_header("X-User-Id", data["id"])
     ngx.req.set_header("X-User-Email", common.urlEncode(data["email"]))
     ngx.req.set_header("X-User-Name", common.urlEncode(data['username']))
-    ngx.req.set_header("X-User-Type", data["user_type"])
-    ngx.req.set_header("X-User-State", data["state"])
 
-    ngx.ctx.userid = data["id"]
-    ngx.ctx.user_email = data["email"]
     ngx.ctx.username = data["username"]
-    ngx.ctx.user_type = data["user_type"]
-    ngx.ctx.user_state = data["state"]
 
     return
 end

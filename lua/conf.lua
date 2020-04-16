@@ -17,9 +17,15 @@ RESULT["STATUS_EN"] = "no permission"
 
 -- 可设置只读用户权限
 -- 用户类型
-READ_ONLY_USER_TYPE = {1}
+-- READ_ONLY_USER_TYPE = {1}
 
 -- 白名单
 WHITE_LIST = {
     {method = "POST", app_uri = "/v1/admin/test"}
+}
+
+
+-- 请求路径限定用户
+USER_LIMITURL_LIST = {
+    {app_uri = "/admin/test", user = "test"}
 }
