@@ -1,0 +1,10 @@
+FROM {{ your dockerhub }}
+
+# Copy application files
+COPY ./build /usr/local/openresty/
+WORKDIR /usr/local/openresty/
+
+
+RUN systemctl enable openresty
+
+CMD [""]
