@@ -6,7 +6,7 @@ openresty做网关用 经典用法
 #### 架构图
 ###### 时序图 架构图暂未画
 
-###### eopenresty架构图
+###### openresty架构图
 ![Alt text](images/arch-openresty.png)
 
 #### openresty各个阶段
